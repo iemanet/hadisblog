@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HadisBlog</title>
+
+    <div th:replace="/fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div th:replace="/fragments/header :: header"/>
+
+<div class="container">
+    <div class="well">
+
+        <!--Show this info message only if posted successfully-->
+        <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
+
+        <!--Edit Post Form-->
+        <div class="row" style="margin-top:5px">
+            <div class="col-md-10 col-md-offset-1">
+                <form autocomplete="off" action="#" th:action="@{/editPost}"
+                      th:object="${post}" method="post" class="form-horizontal" role="form">
+
+                    <h2 class="text-center">Edit post</h2>
+
+                    <div class="form-group">
+                        <label th:if="${#fields.hasErrors('title')}"
+                        	   th:errors="*{title}" class="alert alert-danger"></label>
+                        <input type="text" th:field="*{title}" placeholder="Title"
+                               class="form-control input-xl"></input>
+                    </div>
+
+                    <div class="form-group">
+                        <label th:if="${#fields.hasErrors('body')}"
+                        	   th:errors="*{body}" class="alert alert-danger"></label>
+                        <textarea style="resize:vertical;overflow-x:hidden" rows="15"
+                        		  type="text" th:field="*{body}" placeholder="Body"
+                        		  class="form-control input-xl"/></textarea>
+                    </div>
+
+                    <input type="hidden" th:field="*{user}"/>
+                    <input type="hidden" th:field="*{id}"/>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block" value="Save"/>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!--Delete Button-->
+        <!--Do not show delete button if the post is brand new-->
+        <div class="row" th:if="${post.id}">
+            <div class="col-md-10 col-md-offset-1">
+                <form action="#" th:action="@{'/deletePost/{id}'(id=${post.id})}" th:method="delete"
+                      class="form-horizontal">
+                    <div class="form-group">
+                        <input type="hidden" value="delete"/>
+                        <button type="submit" class="btn btn-danger btn-block" th:text="Delete"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div th:replace="/fragments/footer :: footer"/>
+
+</body>
+</html>

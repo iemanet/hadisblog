@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="rmzlhdsList">
+
+    <div class="starter-template-panel-2" th:each="rmzlhds : ${rmzlhdsPager.rmzlhdsList}">
+        <div class="panel-heading">
+            <h3><a th:text="${rmzlhds.pageId} + '.' + ${rmzlhds.sequenceId}" th:href="@{'/rmzlhds/' + ${rmzlhds.id}}"></a></h3>
+        </div>
+        <h4 class="panel-body" th:text="${rmzlhds.body}"></h4>
+        <br></br>
+    </div>
+
+</div>
+</body>
+</html>

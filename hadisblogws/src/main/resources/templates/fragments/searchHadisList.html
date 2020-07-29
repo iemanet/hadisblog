@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="searchHadisList">
+
+	<form action="#" th:action="@{/searchHadis}" th:object="${searcher}" method="post">
+		
+        <a class="col-md-4">
+        	<input type="text" class="form-control btn-block" th:field="*{keyword}" />
+        	<input type="submit" class="btn btn-primary btn-block" name="searchByKeyword" value="searchByKeyword" />
+        </a>
+        <a class="col-md-2">
+	        <input type="number" min="0" class="form-control btn-block" th:field="*{pageId}"/>
+	        <input type="submit" class="btn btn-primary btn-block" name="searchByPageId" value="searchByPageId" />
+        </a>
+        <br></br><br></br>
+        
+        <div class="starter-template-panel-2" th:each="rmzlhds : ${rmzlhdsPager.rmzlhdsList}">
+	        <div class="panel-heading">
+	            <h3><a th:text="${rmzlhds.pageId} + '.' + ${rmzlhds.sequenceId}" th:href="@{'/rmzlhds/' + ${rmzlhds.id}}"></a></h3>
+	        </div>
+	        <h4 class="panel-body" th:text="${rmzlhds.body}"></h4>
+	        <br></br>
+    	</div>
+    	
+    </form>
+
+</div>
+</body>
+</html>

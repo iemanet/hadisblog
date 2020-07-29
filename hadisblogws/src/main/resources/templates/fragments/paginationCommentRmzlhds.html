@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="paginationCommentRmzlhds">
+
+    <!-- Pagination -->
+    <div class="paginationCommentRmzlhds" th:with="baseUrl=${URLparameter}">
+        <span th:if="${rmzlhdsCommentPager.indexOutOfBounds()}">
+        	<br><h2>No result</h2>
+        </span>
+
+        <span th:unless="${rmzlhdsCommentPager.indexOutOfBounds()}">
+
+            <span th:if="${rmzlhdsCommentPager.hasPrevious()}">
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=1)}">first</a>
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=${rmzlhdsCommentPager.getPageIndex() - 1})}">previous</a>
+            </span>
+
+            <span th:if="${rmzlhdsCommentPager.getTotalPages() != 1}"
+                  th:text="'Page ' + ${rmzlhdsCommentPager.getPageIndex()} + ' of ' + ${rmzlhdsCommentPager.getTotalPages()}">
+            </span>
+
+            <span th:if="${rmzlhdsCommentPager.hasNext()}">
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=${rmzlhdsCommentPager.getPageIndex() + 1})}">next</a>
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=${rmzlhdsCommentPager.getTotalPages()})}">last</a>
+            </span>
+        </span>
+    </div>
+
+</div>
+</body>
+</html>

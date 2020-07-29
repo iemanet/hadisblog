@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="postCommentList">
+
+    <div class="starter-template-panel-1" th:each="commentPost : ${postCommentPager.postCommentList}">
+        <div class="panel-heading">
+            <h1><a th:text="${commentPost.post.title}" th:href="@{'/post/' + ${commentPost.post.id}}"></a></h1>
+        </div>
+        <h4 class="panel-body" th:text="${commentPost.body}"></h4>
+        <br></br>
+    </div>
+
+</div>
+</body>
+</html>

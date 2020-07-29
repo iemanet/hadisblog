@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="rmzlhdsCommentList">
+
+    <div class="starter-template-panel-1" th:each="commentRmzlhds : ${rmzlhdsCommentPager.rmzlhdsCommentList}">
+        <div class="panel-heading">
+            <h1><a th:text="${commentRmzlhds.rmzlhds.pageId} + '.' + ${commentRmzlhds.rmzlhds.sequenceId}" th:href="@{'/rmzlhds/' + ${commentRmzlhds.rmzlhds.id}}"></a></h1>
+            <div th:text="${commentRmzlhds.rmzlhds.body}"></div>
+        </div>
+        <h4 class="panel-body" th:text="${commentRmzlhds.body}"></h4>
+        <br></br>
+    </div>
+
+</div>
+</body>
+</html>

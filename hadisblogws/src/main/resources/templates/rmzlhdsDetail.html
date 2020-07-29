@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <div th:replace="/fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="/fragments/header :: header"/>
+
+<div class="container">
+
+    <!--Rmzlhds-->
+    <div class="jumbotron">
+
+        <h1 th:text="${rmzlhds.pageId} + '.' + ${rmzlhds.sequenceId}"></h1>
+        <div th:text="${rmzlhds.source}"></div>
+        <h4 th:text="${rmzlhds.body}"></h4>
+
+    </div>
+
+    <h2>Comments</h2>
+
+    <!--Comments-->
+    <div class="well" th:each="commentRmzlhds : ${rmzlhds.rmzlhdsComments}">
+        
+        <h4 th:text="${commentRmzlhds.body}"></h4>
+        <div th:text="'Created: ' + ${#dates.format(commentRmzlhds.createDate, 'dd-MMM-yyyy')} + ' by '"></div>
+        <div><a th:text="${commentRmzlhds.user.username}" th:href="@{'/blog/' + ${commentRmzlhds.user.username}}"></a></div>
+        
+        <!--Only show this button if the user is the owner of post-->
+        <div sec:authorize="isAuthenticated()" th:if="${username == commentRmzlhds.user.username}">
+            <div class="row">
+                <a th:href="@{'/editCommentRmzlhds/{id}'(id=${commentRmzlhds.id})}" class="col-md-2">
+                    <button type="button" class="btn btn-primary btn-block" th:text="Edit"></button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    
+    <br></br>
+    
+    <div sec:authorize="hasRole('ADMIN')">
+        <div class="row">
+            <a th:href="@{'/newCommentRmzlhds/{id}'(id=${rmzlhds.id})}" class="col-md-2">
+                <button type="button" class="btn btn-primary btn-block" th:text="NewComment"></button>
+            </a>
+        </div>
+    </div>
+    
+    <br></br>
+</div>
+
+<div th:replace="/fragments/footer :: footer"/>
+
+</body>
+</html>

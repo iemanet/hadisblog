@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="paginationRmzlhds">
+
+    <!-- Pagination -->
+    <div class="paginationRmzlhds" th:with="baseUrl=${URLparameter}">
+        <span th:if="${rmzlhdsPager.indexOutOfBounds()}">
+        	<br><h2>No result</h2>
+        </span>
+
+        <span th:unless="${rmzlhdsPager.indexOutOfBounds()}">
+
+            <span th:if="${rmzlhdsPager.hasPrevious()}">
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=1)}">first</a>
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=${rmzlhdsPager.getPageIndex() - 1})}">previous</a>
+            </span>
+
+            <span th:if="${rmzlhdsPager.getTotalPages() != 1}"
+                  th:text="'Page ' + ${rmzlhdsPager.getPageIndex()} + ' of ' + ${rmzlhdsPager.getTotalPages()}">
+            </span>
+
+            <span th:if="${rmzlhdsPager.hasNext()}">
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=${rmzlhdsPager.getPageIndex() + 1})}">next</a>
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=${rmzlhdsPager.getTotalPages()})}">last</a>
+            </span>
+        </span>
+    </div>
+
+</div>
+</body>
+</html>

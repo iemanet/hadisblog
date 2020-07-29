@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="paginationCommentPost">
+
+    <!-- Pagination -->
+    <div class="paginationCommentPost" th:with="baseUrl=${URLparameter}">
+        <span th:if="${postCommentPager.indexOutOfBounds()}">
+        	<br><h2>No result</h2>
+        </span>
+
+        <span th:unless="${postCommentPager.indexOutOfBounds()}">
+
+            <span th:if="${postCommentPager.hasPrevious()}">
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=1)}">first</a>
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=${postCommentPager.getPageIndex() - 1})}">previous</a>
+            </span>
+
+            <span th:if="${postCommentPager.getTotalPages() != 1}"
+                  th:text="'Page ' + ${postCommentPager.getPageIndex()} + ' of ' + ${postCommentPager.getTotalPages()}">
+            </span>
+
+            <span th:if="${postCommentPager.hasNext()}">
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=${postCommentPager.getPageIndex() + 1})}">next</a>
+                <a class="pageLink"
+                   th:href="@{${baseUrl}(page=${postCommentPager.getTotalPages()})}">last</a>
+            </span>
+        </span>
+    </div>
+
+</div>
+</body>
+</html>

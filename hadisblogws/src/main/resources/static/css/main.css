@@ -1,0 +1,74 @@
+h1 {
+    color: #0000FF;
+}
+
+h2 {
+    color: #FF0000;
+}
+
+h3 {
+    color: #FF0000;
+}
+
+footer {
+    margin-top: 60px;
+}
+
+.validation-message {
+    font-style: normal;
+    font-size: 10px;
+    color: #FF1C19;
+}
+
+a {
+    transition: all .2s;
+}
+
+.paginationPost {
+    display: block;
+    text-align: center;
+}
+
+.paginationRmzlhds {
+    display: block;
+    text-align: center;
+}
+
+.paginationCommentPost {
+    display: block;
+    text-align: center;
+}
+
+.paginationCommentRmzlhds {
+    display: block;
+    text-align: center;
+}
+
+.jumbotron
+{
+    background-image: url('../images/blue-polygonal-shapes-background.jpg');
+    background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.starter-template-panel-1
+{
+    background-image: url('../images/blue-polygonal-shapes-background.jpg');
+    background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.starter-template-panel-2
+{
+    background-image: url('../images/light-blue-art-ppt-background.jpg');
+    background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.well
+{
+    background-image: url('../images/blue-polygonal-shapes-background.jpg');
+    background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+

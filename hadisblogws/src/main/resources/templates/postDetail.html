@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <div th:replace="/fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="/fragments/header :: header"/>
+
+<div class="container">
+
+    <!--Post-->
+    <div class="jumbotron">
+		
+        <h1 th:text="${post.title}"></h1>
+        <div th:text="'Created: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')} + ' by '"></div>
+        <div><a th:text="${post.user.username}" th:href="@{'/blog/' + ${post.user.username}}"></a></div>
+        <h4 th:text="${post.body}"></h4>
+        
+        <!--Only show this button if the user is the owner of post-->
+        <div sec:authorize="isAuthenticated()" th:if="${username == post.user.username}">
+            <div class="row">
+                <a th:href="@{'/editPost/{id}'(id=${post.id})}" class="col-md-2">
+                    <button type="button" class="btn btn-primary btn-block" th:text="Edit"></button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <h2>Comments</h2>
+
+    <!--Comments-->
+    <div class="well" th:each="commentPost : ${post.postComments}">
+        
+        <h4 th:text="${commentPost.body}"></h4>
+        <div th:text="'Created: ' + ${#dates.format(commentPost.createDate, 'dd-MMM-yyyy')} + ' by '"></div>
+        <div><a th:text="${commentPost.user.username}" th:href="@{'/blog/' + ${commentPost.user.username}}"></a></div>
+        
+        <!--Only show this button if the user is the owner of post-->
+        <div sec:authorize="isAuthenticated()" th:if="${username == commentPost.user.username}">
+            <div class="row">
+                <a th:href="@{'/editCommentPost/{id}'(id=${commentPost.id})}" class="col-md-2">
+                    <button type="button" class="btn btn-primary btn-block" th:text="Edit"></button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    
+    <br></br>
+
+    <!--Leave a comment button-->
+    <!--Only if authenticated-->
+    <div sec:authorize="isAuthenticated()">
+        <div class="row">
+            <a th:href="@{'/newCommentPost/{id}'(id=${post.id})}" class="col-md-2">
+                <button type="button" class="btn btn-primary btn-block" th:text="NewComment"></button>
+            </a>
+        </div>
+    </div>
+    
+    <br></br>
+</div>
+
+<div th:replace="/fragments/footer :: footer"/>
+
+</body>
+</html>

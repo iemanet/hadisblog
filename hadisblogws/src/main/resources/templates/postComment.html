@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="/fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="jumbotron">
+        <h1 th:text="${user.name} + '\'s Post Comments'"></h1>
+    </div>
+
+    <div th:replace="/fragments/postCommentList :: postCommentList"/>
+
+    <div th:replace="/fragments/paginationCommentPost :: paginationCommentPost(URLparameter='/postComment/' + ${user.username})"/>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="/fragments/footer :: footer"/>
+
+</body>
+</html>

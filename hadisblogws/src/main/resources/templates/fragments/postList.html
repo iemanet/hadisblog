@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="postList">
+
+    <div class="starter-template-panel-1" th:each="post : ${pager.postList}">
+        <div class="panel-heading">
+            <h1><a th:text="${post.title}" th:href="@{'/post/' + ${post.id}}"></a></h1>
+            <div th:text="'Created: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')} + ' by '"></div>
+            <div><a th:text="${post.user.username}" th:href="@{'/blog/' + ${post.user.username}}"></a></div>
+        </div>
+        <h4 class="panel-body" th:text="${post.body}"></h4>
+        <br></br>
+    </div>
+
+</div>
+</body>
+</html>
