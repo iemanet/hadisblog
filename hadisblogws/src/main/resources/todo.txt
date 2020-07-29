@@ -1,0 +1,8 @@
+comment approval mechanism
+comment edit approval mechanism
+
+pagination design
+
+spring cache mechanism should be enabled for hadis search
+
+what should be done to comments of a deleted post
